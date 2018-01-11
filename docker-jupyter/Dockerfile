@@ -1,7 +1,6 @@
 FROM ubuntu:14.04
 
 COPY /pivotal/* /spark-jars/
-COPY /notebooks/* /notebooks/
 
 ENV ANACONDA_VER Anaconda2-5.0.1-Linux-x86_64
 
@@ -47,9 +46,10 @@ ENV PYSPARK_DRIVER_PYTHON ipython
 ENV PYSPARK_DRIVER_PYTHON_OPTS 'notebook --port=8888 --no-browser --allow-root --ip=0.0.0.0'
 ENV SPARK_HOME /root/spark
 
+VOLUME /notebooks
 WORKDIR /notebooks
 
 EXPOSE 8888
 
 ENTRYPOINT ["tini", "--"]
-CMD ["pyspark", "–master", "spark://spark:7077","--jars=./spark-jars/greenplum-spark_2.11-1.1.0.jar"]
+CMD ["pyspark", "--master", "spark://spark:7077","--jars=../spark-jars/greenplum-spark_2.11-1.1.0.jar"]

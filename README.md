@@ -51,7 +51,7 @@ docker run -it --rm --network=contbridge -p 4040:4040 -p 8080:8080 -p 8081:8081 
 start-master.sh && start-slave.sh spark://spark:7077
 
 # run jupyter-notebook container
-docker run -it --rm --network=contbridge -p 8888:8888 --name=jupyter jvawdrey/jupyter
+docker run -it --rm --network=contbridge -p 8888:8888 --name=jupyter --mount type=bind,source=$(pwd)/notebooks,destination=/notebooks jvawdrey/jupyter
 
 ```
 
@@ -59,7 +59,7 @@ docker run -it --rm --network=contbridge -p 8888:8888 --name=jupyter jvawdrey/ju
 ```bash
 # Grab IP of 'default' image
 docker-machine ip default
-# 192.168.99.103
+# 192.168.99.106
 
 ```
 
