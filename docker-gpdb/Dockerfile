@@ -46,8 +46,8 @@ RUN echo root:pivotal | chpasswd \
         && su gpadmin -l -c "psql -f /usr/local/greenplum-db/share/postgresql/plcontainer/plcontainer_install.sql -d gpadmin" \
         && su gpadmin -l -c "plcontainer configure --reset" \
         && chown gpadmin -R /tmp/plcontainer-python-images-1.0.0_beta1.tar.gz \
-        && rm /tmp/plcontainer-python-images-1.0.0_beta1.tar.gz \
         && su gpadmin -l -c "plcontainer install -n plc_python_shared -i /tmp/plcontainer-python-images-1.0.0_beta1.tar.gz -c pivotaldata/plcontainer_python_shared:devel -l python;"
+
 
 EXPOSE 5432 22
 
