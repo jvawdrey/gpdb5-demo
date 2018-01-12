@@ -52,4 +52,4 @@ WORKDIR /jupyter
 EXPOSE 8888
 
 ENTRYPOINT ["tini", "--"]
-CMD ["pyspark", "--master", "spark://spark:7077","--jars=../spark-jars/greenplum-spark_2.11-1.1.0.jar"]
+CMD ["pyspark", "--master", "spark://spark:7077","--jars=../../spark-jars/greenplum-spark_2.11-1.1.0.jar","--driver-java-options","-Dderby.system.home=/tmp/derby/"]
