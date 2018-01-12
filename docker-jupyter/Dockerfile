@@ -43,11 +43,11 @@ RUN chmod +x /usr/bin/tini
 
 ENV PATH "/root/anaconda/bin:${PATH}"
 ENV PYSPARK_DRIVER_PYTHON ipython
-ENV PYSPARK_DRIVER_PYTHON_OPTS 'notebook --port=8888 --no-browser --allow-root --ip=0.0.0.0'
+ENV PYSPARK_DRIVER_PYTHON_OPTS 'notebook --port=8888 --no-browser --allow-root --ip=0.0.0.0 --notebook_dir=/notebooks'
 ENV SPARK_HOME /root/spark
 
-VOLUME /notebooks
-WORKDIR /notebooks
+VOLUME jupyter/notebooks
+WORKDIR /jupyter
 
 EXPOSE 8888
 
