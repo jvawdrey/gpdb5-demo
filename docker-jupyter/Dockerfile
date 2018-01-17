@@ -43,7 +43,7 @@ RUN chmod +x /usr/bin/tini
 
 ENV PATH "/root/anaconda/bin:${PATH}"
 ENV PYSPARK_DRIVER_PYTHON ipython
-ENV PYSPARK_DRIVER_PYTHON_OPTS 'notebook --port=8888 --no-browser --allow-root --ip=0.0.0.0 --notebook_dir=/notebooks'
+ENV PYSPARK_DRIVER_PYTHON_OPTS 'notebook --port=8888 --no-browser --allow-root --ip=0.0.0.0 --notebook_dir=/notebooks --NotebookApp.iopub_data_rate_limit=100000000'
 ENV SPARK_HOME /root/spark
 
 VOLUME jupyter/notebooks
@@ -52,4 +52,4 @@ WORKDIR /jupyter
 EXPOSE 8888
 
 ENTRYPOINT ["tini", "--"]
-CMD ["pyspark", "--master", "spark://spark:7077","--jars=../../spark-jars/greenplum-spark_2.11-1.1.0.jar","--driver-java-options","-Dderby.system.home=/tmp/derby/"]
+CMD ["pyspark", "--master", "spark://spark:7077","--jars=../../spark-jars/greenplum-spark_2.11-1.1.0.jar","--driver-java-options","-Dderby.system.home=/"]

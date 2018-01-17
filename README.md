@@ -25,6 +25,9 @@
 
 3. Build containers
 ```bash
+# Grab default vm details
+eval "$(docker-machine env default)"
+
 # build gpdb container
 cd docker-gpdb
 docker build -t jvawdrey/gpdb .
@@ -69,6 +72,10 @@ docker-machine ip default
 * Spark Worker WebUI console: http://< IP ADDRESS >:8081/
 * Spark WebUI console: http://< IP ADDRESS >:4040/
 
+#### MADlib examples
+
+* Online retail data - http://archive.ics.uci.edu/ml/datasets/online+retail
+* http://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx
 
 #### Issues
 
@@ -98,6 +105,25 @@ docker-machine create default --driver virtualbox
 
 ```
 
+```bash
+
+eval "$(docker-machine env default)"
+# Error checking TLS connection: Error checking and/or regenerating the certs: There was an error validating certificates for
+# host "192.168.99.100:2376": x509: certificate is valid for 192.168.99.101, not 192.168.99.100
+# You can attempt to regenerate them using 'docker-machine regenerate-certs [name]'.
+# Be advised that this will trigger a Docker daemon restart which might stop running containers.
+
+docker-machine regenerate-certs default
+# Regenerate TLS machine certs?  Warning: this is irreversible. (y/n): y
+# Regenerating TLS certificates
+# Waiting for SSH to be available...
+# Detecting the provisioner...
+# Copying certs to the local machine directory...
+# Copying certs to the remote machine...
+# Setting Docker configuration on the remote daemon...
+
+eval "$(docker-machine env default)"
+```
 
 #### Contact
 

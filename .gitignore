@@ -1,7 +1,7 @@
 .DS_Store
 /tmp
 */pivotal/*
-
+*.xlsx
 */*/.ipynb_checkpoints
 */*/metastore_db
 derby.log
