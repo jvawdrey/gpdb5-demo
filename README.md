@@ -72,10 +72,6 @@ docker-machine ip default
 * Spark Worker WebUI console: http://< IP ADDRESS >:8081/
 * Spark WebUI console: http://< IP ADDRESS >:4040/
 
-#### MADlib examples
-
-* Online retail data - http://archive.ics.uci.edu/ml/datasets/online+retail
-* http://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx
 
 #### Issues
 
