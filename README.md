@@ -7,9 +7,7 @@
 * Jupyter Notebook and connecting to GPDB
 * Apache MADlib
 * PL/Python
-* PL/Containers
 * GPDB-Spark Connector
-
 
 #### Build Docker Images
 
