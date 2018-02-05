@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 
 COPY /pivotal/* /spark-jars/
+COPY /sql/* jupyter/sql/
 
 ENV ANACONDA_VER Anaconda2-5.0.1-Linux-x86_64
 
