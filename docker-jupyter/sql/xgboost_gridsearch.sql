@@ -466,7 +466,8 @@ $$
     X_test = df[features]
     y_test = df[class_label] if class_label else None
     #3) Score the test set
-    y_pred_test = gbm.predict(X_test)
+    y_pred_test = (pd.DataFrame(gbm.predict_proba(X_test)))[1].tolist()
+
     if(class_label):
         cmat_test = confusion_matrix(y_test, y_pred_test)
         scores = numpy.array(precision_recall_fscore_support(y_test, y_pred_test)).transpose()
@@ -478,8 +479,9 @@ $$
     res_df = df.join(pd.Series(y_pred_test, index = X_test.index).to_frame(predicted_class_label))
     #4) Feature importance scores
     importance = gbm.booster().get_fscore()
+
     fnames_importances = sorted(
-                [(features[int(float(k.replace('f','')))], importance[k]) for k in importance],
+                [(k, importance[k]) for k in importance],
                 key=itemgetter(1),
                 reverse=True
             )
@@ -500,8 +502,8 @@ $$
         drop table if exists {mdl_output_tbl};
         create table {mdl_output_tbl}
         (
-            {id_column} text,
-            {predicted_class_label} text,
+            {id_column} bigint,
+            {predicted_class_label} float,
             metrics text,
             feature_names text[],
             feature_importance_scores float8[],
