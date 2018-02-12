@@ -15,14 +15,12 @@
 --    training & scoring will happen in-parallel on all nodes.
 -------------------------------------------------------------------------------------------------------------------------------
 
-create schema xgbdemo;
-
 ---------------------------------------------------------------------------------------------------------
 --1) XGBoost parallel grid-search
 ---------------------------------------------------------------------------------------------------------
 
 --1) Create function to construct a dataframe and serialize it.
-drop function if exists xgbdemo.__serialize_pandas_dframe_as_bytea__(
+drop function if exists public.__serialize_pandas_dframe_as_bytea__(
     text,
     text,
     text,
@@ -30,7 +28,7 @@ drop function if exists xgbdemo.__serialize_pandas_dframe_as_bytea__(
     text[]
 );
 
-create or replace function xgbdemo.__serialize_pandas_dframe_as_bytea__(
+create or replace function public.__serialize_pandas_dframe_as_bytea__(
     features_schema text,
     features_tbl text,
     id_column text,
@@ -116,8 +114,8 @@ $$ language plpythonu;
 
 
 --2) UDF to train XGBoost
-drop type if exists xgbdemo.mdl_gridsearch_train_results_type cascade;
-create type xgbdemo.mdl_gridsearch_train_results_type
+drop type if exists public.mdl_gridsearch_train_results_type cascade;
+create type public.mdl_gridsearch_train_results_type
 as
 (
     metrics text,
@@ -126,7 +124,7 @@ as
     params text
 );
 
-drop function if exists xgbdemo.__xgboost_train_parallel__(
+drop function if exists public.__xgboost_train_parallel__(
     bytea,
     text[],
     text,
@@ -134,14 +132,14 @@ drop function if exists xgbdemo.__xgboost_train_parallel__(
     text
 );
 
-create or replace function xgbdemo.__xgboost_train_parallel__(
+create or replace function public.__xgboost_train_parallel__(
     dframe bytea,
     features_all text[],
     class_label text,
     params text,
     class_weights text
 )
-returns xgbdemo.mdl_gridsearch_train_results_type
+returns public.mdl_gridsearch_train_results_type
 as
 $$
     import plpy, re
@@ -210,7 +208,7 @@ $$ language plpythonu;
 
 
 --3) XGBoost grid search
-drop function if exists xgbdemo.xgboost_grid_search(
+drop function if exists public.xgboost_grid_search(
         text,
         text,
         text,
@@ -222,7 +220,7 @@ drop function if exists xgbdemo.xgboost_grid_search(
         text
 );
 
-create or replace function xgbdemo.xgboost_grid_search(
+create or replace function public.xgboost_grid_search(
     features_schema text,
     features_tbl text,
     id_column text,
@@ -315,7 +313,7 @@ $$
             from
             (
                 select
-                    xgbdemo.__serialize_pandas_dframe_as_bytea__(
+                    public.__serialize_pandas_dframe_as_bytea__(
                         '{features_schema}',
                         '{features_tbl}',
                         '{id_column}',
@@ -352,7 +350,7 @@ $$
             from
             (
                 select
-                    xgbdemo.__xgboost_train_parallel__(
+                    public.__xgboost_train_parallel__(
                         df,
                         ARRAY[
                             {features}
@@ -386,8 +384,8 @@ $$ language plpythonu;
 --2) XGBoost : Model Scoring
 ---------------------------------------------------------------------------------------------------------
 
-drop function if exists xgbdemo.xgboost_mdl_score(text, text, text, text, text, text);
-create or replace function xgbdemo.xgboost_mdl_score(
+drop function if exists public.xgboost_mdl_score(text, text, text, text, text, text);
+create or replace function public.xgboost_mdl_score(
     scoring_tbl text,
     id_column text,
     class_label text,
