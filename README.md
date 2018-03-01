@@ -15,8 +15,6 @@
   * Greenplum Database 5.3.0 Binary Installer for RHEL 6 (greenplum-db-5.3.0-rhel6-x86_64.zip)
   * MADlib 1.13 for RHEL 6 (madlib-1.13-gp5-rhel6-x86_64.tar.gz)
   * Python Data Science Package for RHEL 6 (DataSciencePython-1.1.1-gp5-rhel6-x86_64.gppkg)
-  * PL/Container 1.0.0_beta1 for RHEL 6 (plcontainer-1.0.0_beta1-rhel6-x86_64.gppkg)
-  * Pl/Container Image for Python 1.0.0_beta1 (plcontainer-python-images-1.0.0_beta1.tar.gz)
 
 2. Download the following files to "docker-jupyter/pivotal" directory from https://network.pivotal.io/products/pivotal-gpdb
   * Greenplum-Spark Connector 1.1.0 (greenplum-spark_2.11-1.1.0.jar)
