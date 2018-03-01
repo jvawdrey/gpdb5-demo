@@ -61,7 +61,7 @@ docker run -it --rm --network=contbridge -p 8888:8888 --name=jupyter --mount typ
 ```bash
 # Grab IP of 'default' image
 docker-machine ip default
-# 192.168.99.101
+# 192.168.99.100
 
 ```
 
