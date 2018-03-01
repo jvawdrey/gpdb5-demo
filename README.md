@@ -50,7 +50,8 @@ docker run -it --rm --network=contbridge -p 4040:4040 -p 8080:8080 -p 8081:8081 
 # from within container
 start-master.sh && start-slave.sh spark://spark:7077
 
-# run jupyter-notebook container
+# run jupyter-notebook container (from docker-jupyter directory)
+cd docker-jupyter
 docker run -it --rm --network=contbridge -p 8888:8888 --name=jupyter --mount type=bind,source=$(pwd)/notebooks,destination=/jupyter/notebooks jvawdrey/jupyter
 
 ```
