@@ -9,7 +9,20 @@
 * PL/Python
 * GPDB-Spark Connector
 
+
+#### Modeling Workflow Example
+
+docker-jupyter/notebooks/Modeling Workflow Example - Greenplum Database.ipynb
+
+1) Docker image: See instructions below
+2) Greenplum cluster: To run notebook against Greenplum cluster   
+  * Greenplum Environment: GPDB 5.3, MADlib 1.13, Greenplum Python Data Science Package
+  * Python packages required for Jupyter Notebook: psycopg2, pandas, seaborn, textwrap, ipywidgets, IPython
+
+
 #### Build Docker Images
+
+**Instructions assume that you have docker installed and running**
 
 1. Download the following files to "docker-gpdb/pivotal" directory from https://network.pivotal.io/products/pivotal-gpdb
   * Greenplum Database 5.3.0 Binary Installer for RHEL 6 (greenplum-db-5.3.0-rhel6-x86_64.zip)
@@ -21,7 +34,8 @@
 
 3. Build containers
 ```bash
-# Grab default vm details
+# Grab IP address of docker container
+# I am using docker / virtualbox setup where command is
 eval "$(docker-machine env default)"
 
 # build gpdb container
