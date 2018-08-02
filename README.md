@@ -25,8 +25,8 @@ docker-jupyter/notebooks/Modeling Workflow Example - Greenplum Database.ipynb
 **Instructions assume that you have docker installed and running**
 
 1. Download the following files to "docker-gpdb/pivotal" directory from https://network.pivotal.io/products/pivotal-gpdb
-  * Greenplum Database 5.3.0 Binary Installer for RHEL 6 (greenplum-db-5.3.0-rhel6-x86_64.zip)
-  * MADlib 1.13 for RHEL 6 (madlib-1.13-gp5-rhel6-x86_64.tar.gz)
+  * Greenplum Database 5.1.0 Binary Installer for RHEL 6 (greenplum-db-5.10.0-rhel6-x86_64.zip)
+  * MADlib 1.14 for RHEL 6 (madlib-1.14-gp5-rhel6-x86_64.tar.gz)
   * Python Data Science Package for RHEL 6 (DataSciencePython-1.1.1-gp5-rhel6-x86_64.gppkg)
 
 2. Download the following files to "docker-jupyter/pivotal" directory from https://network.pivotal.io/products/pivotal-gpdb
