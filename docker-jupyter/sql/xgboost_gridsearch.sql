@@ -476,7 +476,7 @@ $$
     predicted_class_label = class_label+'_predicted' if class_label else 'class_label_predicted'
     res_df = df.join(pd.Series(y_pred_test, index = X_test.index).to_frame(predicted_class_label))
     #4) Feature importance scores
-    importance = gbm.booster().get_fscore()
+    importance = gbm.get_booster().get_fscore()
 
     fnames_importances = sorted(
                 [(k, importance[k]) for k in importance],
